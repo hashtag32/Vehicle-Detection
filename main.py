@@ -11,11 +11,11 @@ if __name__=="__main__":
     #car_obj.train()
     
     # Running the pipeline
-    if False:
-        # Write Video with given file
-        write_video(car_obj, './project_video.mp4')
-
     if True:
+        # Write Video with given file
+        write_video(car_obj, './doc/project_video.mp4')
+
+    if False:
         # Show the pipelined test_images to user
         test_imgList=glob.glob('./test_images/test*.jpg')
 
