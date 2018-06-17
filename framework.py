@@ -3,12 +3,6 @@ import numpy as np
 import cv2
 from skimage.feature import hog
 
-#cspace = 'YCrCb' # Can be RGB, HSV, LUV, HLS, YUV, YCrCb
-#orient = 9
-#pix_per_cell = 8
-#cell_per_block = 2
-#hog_channel = 'ALL' # Can be 0, 1, 2, or "ALL"
-
 cspace = 'YCrCb'
 orient = 8
 pix_per_cell = 8

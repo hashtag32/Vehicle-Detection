@@ -70,7 +70,7 @@ I tried various combinations of parameters for colorspace, orientation, pix_per_
 
 The classifier performed on these the best.
 
-A including binned color features and/or color histogram decreased the performance.
+An including binned color features and/or color histogram decreased the performance and are therefore left out.
 
 #### 3. Describe how (and identify where in your code) you trained a classifier using your selected HOG features (and color features if you used them).
 
@@ -80,15 +80,16 @@ After that, the classifier is fed with the training data (extracted training dat
 
 For the classifier, a SVM with a Linear SVC is chosen. Also other classifier were tested (DecisionTree, RandomForest), but without big tuning the SVC performed the best.
 
-Due to the fact that at the end of the pipeline, False positives are distracting, another performance measurement is introduced:
+Due to the fact that at the end of the pipeline, false positives are common, another performance measurement is introduced:
 The F1 Score combines recall and precision and gives therefore more information about the false positive rate than an trivial accuracy score. 
 
+The final F1 score is 0.978.
 
 ### Sliding Window Search
 
 #### 1. Describe how (and identify where in your code) you implemented a sliding window search.  How did you decide what scales to search and how much to overlap windows?
 
-The sliding window search from the lesson was too slow. That's why an optimized algorithm with nearly the same functionality was implemented.
+The sliding window search from the lesson is too slow. That's why an optimized algorithm with nearly the same functionality was implemented.
 
 The algorithm can be found in the find_car.py:154 (find_cars function).
 
@@ -104,7 +105,7 @@ Here is an example with this subsampling approach:
 
 Because of the scale 0.8 window even the car that is very far away is detected.
 
-#### 2. Show some examples of test images to demonstrate how your pipeline is working.  What did you do to optimize the performance of your classifier?
+#### 2. Show some examples of test images to demonstrate how your pipeline is working. What did you do to optimize the performance of your classifier?
 
 As mentioned above, each image will be sampled with sliding windows of different sizes, then the output looks like that:
 
@@ -120,8 +121,7 @@ This will look like this:
 
 Based on the calculated heatmap, again bounding boxes will be drawn, which will look like that:
 
-
-![alt text](doc/final_output.png)
+![alt text](doc/final_window.png)
 
 Here, you can see that two vehilces close to the ego vehicle are clearly detected, but the vehicles in far distance are filtered out.
 Moreover, the vehicles on the against roadway are detected.
@@ -148,7 +148,7 @@ So, the heatmap calculation looks also on the history of the rectangles.
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The heatmap calculation that filter over the last three frames has optimized the performance biggly!
+The heatmap calculation that filters over the last three frames has optimized the performance biggly!
 
 But nevertheless, the pipeline is not very robust when images with a lot to interpret comes into the image (trees).
 
